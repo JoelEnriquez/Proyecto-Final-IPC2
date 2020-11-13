@@ -46,7 +46,7 @@ public class LecturaXML {
             List<Element> listaAdmins = root.getChildren("admin");
             List<Element> listaPacientes = root.getChildren("paciente");
             List<Element> listaConsultas = root.getChildren("consulta");
-
+/*
             CargaEntidadesInde entidadesIndepen = new CargaEntidadesInde(conexion, encriptacion,
                     listaAdmins, listaPacientes, listaConsultas);
             try {
@@ -81,11 +81,15 @@ public class LecturaXML {
             CargaLabDiasTrab cargaLE = new CargaLabDiasTrab(conexion, encriptacion,
                     listaLaboratoristas, listaExamenes, listaResultados,rutaPathAbsoluto);
             cargaLE.ejecutarCarga();
+*/
         } catch (JDOMException e) {
             throw new IOException("No se ha encontrado el archivo xml");
         } catch (Exception ex) {
             ex.getMessage();
         }
+
+
+
     }
     
 }
