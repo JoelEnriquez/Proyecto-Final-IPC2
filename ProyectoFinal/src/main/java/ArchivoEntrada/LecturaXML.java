@@ -47,13 +47,18 @@ public class LecturaXML {
             List<Element> listaClientes = root.getChildren("CLIENTE");
             List<Element> listaTransacciones = root.getChildren("TRANSACCION");
 
+            //Subida de Gerentes
             SubidaGerente subidaGerente = new SubidaGerente(listaGerentes);
             subidaGerente.ejecutarSubida();
+            //Subida de Cajeros
             SubidaCajero subidaCajero = new SubidaCajero(listaCajeros);
             subidaCajero.ejecutarSubida();
+            //Subida de Clientes y sus cuentas
             SubidaCliente subidaCliente = new SubidaCliente(listaClientes, rutaPathAbsoluto);
-            
+            subidaCliente.ejecutarSubida();
+            //Subida de Transacciones
             SubidaTransaccion subidaTransaccion = new SubidaTransaccion(listaTransacciones);
+            subidaTransaccion.ejecutarSubida();
 
         } catch (JDOMException e) {
             throw new IOException("No se ha encontrado el archivo xml");
