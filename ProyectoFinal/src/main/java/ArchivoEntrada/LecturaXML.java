@@ -51,7 +51,8 @@ public class LecturaXML {
             subidaGerente.ejecutarSubida();
             SubidaCajero subidaCajero = new SubidaCajero(listaCajeros);
             subidaCajero.ejecutarSubida();
-            SubidaCliente subidaCliente = new SubidaCliente(listaClientes);
+            SubidaCliente subidaCliente = new SubidaCliente(listaClientes, rutaPathAbsoluto);
+            
             SubidaTransaccion subidaTransaccion = new SubidaTransaccion(listaTransacciones);
 
         } catch (JDOMException e) {
