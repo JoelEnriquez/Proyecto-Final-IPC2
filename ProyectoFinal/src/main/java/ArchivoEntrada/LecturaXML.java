@@ -25,7 +25,6 @@ public class LecturaXML {
     
     private String pathXML;
     private String rutaPathAbsoluto;
-    private Connection conexion = Conexion.getConexion();
     private Encriptar encriptacion;
 
     public LecturaXML(String pathXML, String rutaPathAbsoluto) {
@@ -42,46 +41,18 @@ public class LecturaXML {
             Document documento = (Document) builder.build(archivoEntradaXML);
             Element root = documento.getRootElement();
 
-            //Datos que no dependen de la estructura de la DB
-            List<Element> listaAdmins = root.getChildren("admin");
-            List<Element> listaPacientes = root.getChildren("paciente");
-            List<Element> listaConsultas = root.getChildren("consulta");
-/*
-            CargaEntidadesInde entidadesIndepen = new CargaEntidadesInde(conexion, encriptacion,
-                    listaAdmins, listaPacientes, listaConsultas);
-            try {
-                entidadesIndepen.ejecutarCarga();
-            } catch (Exception ex) {
-                ex.getMessage();
-            }
+            //Obtenemos las listas principales de datos
+            List<Element> listaGerentes = root.getChildren("GERENTE");
+            List<Element> listaCajeros = root.getChildren("CAJERO");
+            List<Element> listaClientes = root.getChildren("CLIENTE");
+            List<Element> listaTransacciones = root.getChildren("TRANSACCION");
 
-            //Datos que dependen de la estructura de la DB
-            //Agregamos doctores y citas
-            List<Element> listaDoctores = root.getChildren("doctor");
-            List<Element> listaCitas = root.getChildren("cita");
-            CargaMedicosYEspecialidad medicoYAsigEspecialida
-                    = new CargaMedicosYEspecialidad(conexion, encriptacion, listaDoctores);
-            try {
-                medicoYAsigEspecialida.ejecutarCarga();
-            } catch (Exception ex) {
-                ex.getMessage();
-            }
+            SubidaGerente subidaGerente = new SubidaGerente(listaGerentes);
+            subidaGerente.ejecutarSubida();
+            SubidaCajero subidaCajero = new SubidaCajero(listaCajeros);
+            SubidaCliente subidaCliente = new SubidaCliente(listaClientes);
+            SubidaTransaccion subidaTransaccion = new SubidaTransaccion(listaTransacciones);
 
-            List<Element> listaReportes = root.getChildren("reporte");
-            CargaReporteYCitas cargaRYC = new CargaReporteYCitas(conexion, listaReportes, listaCitas);
-            try {
-                cargaRYC.ejecutarCarga();
-            } catch (ParseException ex) {
-                ex.getMessage();
-            }
-
-            List<Element> listaLaboratoristas = root.getChildren("laboratorista");
-            List<Element> listaExamenes = root.getChildren("examen");
-            List<Element> listaResultados = root.getChildren("resultado");
-            CargaLabDiasTrab cargaLE = new CargaLabDiasTrab(conexion, encriptacion,
-                    listaLaboratoristas, listaExamenes, listaResultados,rutaPathAbsoluto);
-            cargaLE.ejecutarCarga();
-*/
         } catch (JDOMException e) {
             throw new IOException("No se ha encontrado el archivo xml");
         } catch (Exception ex) {
