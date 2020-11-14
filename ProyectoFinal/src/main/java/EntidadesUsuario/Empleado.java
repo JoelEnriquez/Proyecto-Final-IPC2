@@ -13,8 +13,8 @@ public class Empleado extends Usuario{
     
     private String codigoTurno;
 
-    public Empleado(String codigo, String nombre, String DPI, String direccion, String sexo, String password, String tipoUsuario, String codigoTurno) {
-        super(codigo, nombre, DPI, direccion, sexo, password, tipoUsuario);
+    public Empleado(String codigo, String nombre, String DPI, String direccion, String sexo, String password, String tipoEmpleado, String codigoTurno) {
+        super(codigo, nombre, DPI, direccion, sexo, password, tipoEmpleado);
         this.codigoTurno = codigoTurno;
     }    
     

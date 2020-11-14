@@ -50,6 +50,7 @@ public class LecturaXML {
             SubidaGerente subidaGerente = new SubidaGerente(listaGerentes);
             subidaGerente.ejecutarSubida();
             SubidaCajero subidaCajero = new SubidaCajero(listaCajeros);
+            subidaCajero.ejecutarSubida();
             SubidaCliente subidaCliente = new SubidaCliente(listaClientes);
             SubidaTransaccion subidaTransaccion = new SubidaTransaccion(listaTransacciones);
 
