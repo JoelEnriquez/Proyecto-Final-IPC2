@@ -79,7 +79,7 @@ public class CargaArchivo extends HttpServlet {
     }
 
     private void saveFiles(Part filePart,String rutaArchivo){
-        File rutaInicial = new File("/tmp/");
+        File rutaInicial = new File("/tmp");
         File file = new File(rutaInicial,rutaArchivo);
         
         try(InputStream inputS = filePart.getInputStream()) {
