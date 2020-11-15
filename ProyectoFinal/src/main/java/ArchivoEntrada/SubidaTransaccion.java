@@ -61,7 +61,7 @@ public class SubidaTransaccion {
             ps.execute();
             
         } catch (Exception e) {
-            e.printStackTrace(System.out);
+            e.printStackTrace(System.out);   
         }
     }
     
