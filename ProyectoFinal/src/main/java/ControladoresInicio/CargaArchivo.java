@@ -74,7 +74,7 @@ public class CargaArchivo extends HttpServlet {
         else{
             request.setAttribute("Sucess", true);
         }
-        RequestDispatcher requestD = request.getRequestDispatcher("Inicio/CargaDatos.jsp");
+        RequestDispatcher requestD = request.getRequestDispatcher("Inicio/CargarDatos.jsp");
         requestD.forward(request, response);
     }
 

@@ -5,12 +5,9 @@
  */
 package ArchivoEntrada;
 
-import ConexionDB.Conexion;
 import Encriptacion.Encriptar;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.text.ParseException;
 import java.util.List;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.Document;
@@ -62,8 +59,9 @@ public class LecturaXML {
 
         } catch (JDOMException e) {
             throw new IOException("No se ha encontrado el archivo xml");
+            
         } catch (Exception ex) {
-            ex.getMessage();
+            ex.printStackTrace(System.out);
         }
 
 

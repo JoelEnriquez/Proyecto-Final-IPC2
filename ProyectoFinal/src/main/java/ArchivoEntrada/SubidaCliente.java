@@ -50,8 +50,10 @@ public class SubidaCliente {
             String sexoCliente =  cajero.getChildTextTrim("SEXO");
             //Cuentas
             List<Element> listaCuentas = cajero.getChildren("CUENTAS");
-            for (int j = 0; j < listaCuentas.size(); j++) {         
-                Element valoresCuenta = listaCuentas.get(j);
+            List<Element> listaCuenta = ((Element) listaCuentas.get(0)).getChildren("CUENTA");
+            for (int j = 0; j < listaCuenta.size(); j++) {
+                
+                Element valoresCuenta = listaCuenta.get(j);
                 //Valores de cada elemento de cuenta
                 String codigoCuenta = valoresCuenta.getChildTextTrim("CODIGO");
                 Date fechaCreacion =  Date.valueOf(valoresCuenta.getChildTextTrim("CREADA"));
