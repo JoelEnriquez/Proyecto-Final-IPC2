@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author joel
  */
-@WebServlet(name = "ControlLogOut", urlPatterns = {"/ControlLogOut"})
+@WebServlet("/ControlLogOut")
 public class ControlLogOut extends HttpServlet {
 
     

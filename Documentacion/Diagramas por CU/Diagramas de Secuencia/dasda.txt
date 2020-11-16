@@ -1,0 +1,10 @@
+<c:if test="${solicitud.estadoN == 0}">
+    <a href="${pageContext.request.contextPath}/solicitud?accion=aceptar&id=${solicitud.id}&cliente=${solicitud.cliente.codigo}&cuenta=${solicitud.cuenta.codigo}" 
+        class="btn btn-outline-success">
+        <i class="fas fa-check"></i> Aceptar
+    </a>
+    <a href="${pageContext.request.contextPath}/solicitud?accion=rechazar&id=${solicitud.id}" 
+        class="btn btn-outline-danger">
+        <i class="fas fa-times"></i> Rechazar
+    </a>
+</c:if> 

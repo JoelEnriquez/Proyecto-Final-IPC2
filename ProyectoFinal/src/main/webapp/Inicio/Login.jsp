@@ -15,14 +15,14 @@
     <body>
         <%if (request.getAttribute("fail") != null) {%>
         <%if ((boolean) request.getAttribute("fail")) {%>
-    <CENTER><p class="alert alert-danger">Usuario o Contraseña Incorrecto</p></CENTER>       
+        <p class="alert alert-danger text-center">Usuario o Contraseña Incorrecto</p>      
         <%}%>
         <%}%>
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="card" style="width: 18rem;">
-                <img src="${pageContext.request.contextPath}/resources/doctor_and_patient.jpg" class="card-img-top" alt="10">
+                <img src="${pageContext.request.contextPath}/resources/banco.jpeg" class="card-img-top" alt="10">
                 <div class="card-body">
                     <form action="${pageContext.request.contextPath}/Login" method="POST">
                         <div class="form-group">

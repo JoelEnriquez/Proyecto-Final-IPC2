@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author joel
  */
-@WebServlet(name = "ComprobarDatos", urlPatterns = {"/ComprobarDatos"})
+@WebServlet("/ComprobarDatos")
 public class ComprobarDatos extends HttpServlet {
 
    

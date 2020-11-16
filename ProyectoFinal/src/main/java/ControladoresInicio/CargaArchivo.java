@@ -6,16 +6,13 @@
 package ControladoresInicio;
 
 import ArchivoEntrada.LecturaXML;
-import ConexionDB.Conexion;
 import ModelosInicio.VerificarDatos;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.sql.Connection;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,10 +28,8 @@ import javax.servlet.http.Part;
  * @author joel
  */
 @MultipartConfig//(maxFileSize = 16177215) //Maximo = 16mb
-@WebServlet(name = "CargaArchivo", urlPatterns = {"/CargaArchivo"})
+@WebServlet("/CargaArchivo")
 public class CargaArchivo extends HttpServlet {
-
-   
 
     /**
      * Handles the HTTP <code>POST</code> method.

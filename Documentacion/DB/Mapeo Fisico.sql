@@ -50,7 +50,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `ProyectoFinal`.`CLIENTE` (
   `codigo_cliente` INT NOT NULL,
   `birth` DATE NOT NULL,
-  `PDF-DPI` MEDIUMBLOB NOT NULL,
+  `PDF_DPI` MEDIUMBLOB NOT NULL,
   PRIMARY KEY (`codigo_cliente`),
   INDEX `fk_CLIENTE_USUARIO1_idx` (`codigo_cliente` ASC) ,
   CONSTRAINT `fk_CLIENTE_USUARIO1`

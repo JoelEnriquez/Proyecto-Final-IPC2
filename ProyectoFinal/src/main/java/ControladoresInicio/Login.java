@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author joel
  */
-@WebServlet(name = "Login", urlPatterns = {"/Login"})
+@WebServlet("/Login")
 public class Login extends HttpServlet {
 
     @Override

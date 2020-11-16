@@ -63,9 +63,5 @@ public class LecturaXML {
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
         }
-
-
-
     }
-    
 }

@@ -19,15 +19,10 @@
         %>
         <jsp:include page="/WEB-INF/NavBars/NavBarCliente.jsp"/>
 
-    <CENTER>
-        <br/>
-        <div class="row align-items-center">
-            <div class="col">
-                <img src="${pageContext.request.contextPath}/resources/Paciente_Doctor.jpg" alt="300">
-            </div>
+        <div class="text-center m-auto">
+            <img src="${pageContext.request.contextPath}/resources/Cliente.jpg" alt="450">
         </div>
-    </CENTER>
 
     <jsp:include page="/WEB-INF/Extras/extraJS.jsp"/>
-</body>
+    </body>
 </html>

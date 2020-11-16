@@ -1,5 +1,5 @@
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand text-white" href="${pageContext.request.contextPath}/Cliente/InicioCliente.jsp">Billeton <%=request.getSession().getAttribute("usuario")%></a>
         <button class="navbar-toggler" data-target="#menu" data-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
@@ -12,7 +12,7 @@
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Transferir Dinero</a>
-                        <a class="dropdown-item" href="#">Solicitar Asociacion</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/Cliente/SolicitarAsociacion.jsp">Solicitar Asociacion</a>
                         <a class="dropdown-item" href="#">Responder Asociacion</a>
                     </div>
                 </li>
@@ -29,15 +29,15 @@
                     </div>
                 </li>
                 
-                <li class="btn btn-secundary ml-2">
-                    <a href="${pageContext.request.contextPath}/ControlLogOut">Cerrar Sesion</a>
+                <li class="btn btn-sucess ml-2">
+                    <a class="" href="${pageContext.request.contextPath}/ControlLogOut">Cerrar Sesion</a>
                 </li>
             </ul>
-            <span class="navbar-text mr-4">
-                <%="Nombre:" + request.getSession().getAttribute("nombre")%>
+            <span class="navbar-text mr-4 text-white">
+                Nombre: ${nombre}
             </span>
-            <span class="navbar-text">
-                <%="Codigo:" + request.getSession().getAttribute("codigo")%>
+            <span class="navbar-text text-white">
+                Codigo: ${codigo}
             </span>   
         </div>
     </nav>
