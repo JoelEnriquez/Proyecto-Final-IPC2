@@ -21,10 +21,10 @@
         %>
         <jsp:include page="/WEB-INF/NavBars/NavBarCliente.jsp"/>
 
-        <div class="row justify-content-center align-items-center vh-100">
+        <div class="row justify-content-center vh-100 mt-4">
             <div class="col-8">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header text-center">
                         <h3>Solicitudes pendientes</h3>
                     </div>
                     <div class="card-body">
@@ -40,28 +40,34 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach var="solicitud" items="${solicitudes}" varStatus="status">
+                                <c:forEach var="solicitud" items="${solicitudesPen}" varStatus="status">
                                     <tr>
                                         <td>${status.count}</td>
-                                        <td>${solicitud.cliente.noIdentificacion}</td>
-                                        <td>${solicitud.cliente.nombre}</td>
-                                        <td>${solicitud.fecha}</td>
+                                        <td>${solicitud.DPI}</td>
+                                        <td>${solicitud.nombre}</td>
+                                        <td>${solicitud.fechaSolicitud}</td>
                                         <td>${solicitud.estado}</td>
                                         <td>
-                                            <c:if test="${solicitud.estadoN == 0}">
-                                                <a href="${pageContext.request.contextPath}/solicitud?accion=aceptar&id=${solicitud.id}&cliente=${solicitud.cliente.codigo}&cuenta=${solicitud.cuenta.codigo}" 
-                                                   class="btn btn-outline-success">
-                                                    <i class="fas fa-check"></i> Aceptar
-                                                </a>
-                                                <a href="${pageContext.request.contextPath}/solicitud?accion=rechazar&id=${solicitud.id}" 
-                                                   class="btn btn-outline-danger">
-                                                    <i class="fas fa-times"></i> Rechazar
-                                                </a>
-                                            </c:if>
+                                            <a href="${pageContext.request.contextPath}/ResponderSolicitud?responder=aceptar&codigo=${solicitud.codigo}&codCliente=${solicitud.codigoCliente}&codCuenta=${solicitud.codigoCuenta}" 
+                                               class="btn btn-outline-success">
+                                                <i class="fas fa-check"></i> Aceptar
+                                            </a>
+                                            <a href="${pageContext.request.contextPath}/ResponderSolicitud?responder=declinar&codigo=${solicitud.codigo}" 
+                                               class="btn btn-outline-danger">
+                                                <i class="fas fa-times"></i> Rechazar
+                                            </a>
                                         </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
+                            <c:if test="${!empty(logro)}">
+                                <c:if test="${logro==1}">
+                                <p class="alert alert-success text-center mt-2">Se han vinculado las cuentas</p>
+                                </c:if>
+                                <c:if test="${logro==0}">
+                                <p class="alert alert-danger text-center mt-2">Se ha rechazado la solicitud</p>
+                                </c:if>
+                            </c:if>
                         </table>
                     </div>
                 </div>

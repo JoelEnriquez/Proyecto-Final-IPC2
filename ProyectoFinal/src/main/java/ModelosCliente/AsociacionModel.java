@@ -19,9 +19,9 @@ import java.util.ArrayList;
  */
 public class AsociacionModel {
     
-    private final String SOLICITUD_ASOCIACION = "SELECT SA.* FROM SOLICITUD ASOCIACION SA";
+    private final String SOLICITUD_ASOCIACION = "SELECT SA.* FROM SOLICITUD_ASOCIACION SA";
     private final String INSERTAR_SOLICITUD = "INSERT INTO SOLICITUD_ASOCIACION (estado,fecha_solicitud, codigo_cuenta, codigo_cliente) VALUES (?,?,?,?)";
-    private final String SOLICITUD_CURSO = SOLICITUD_ASOCIACION + " WHERE SA.estado='En espera' AND SA.codigo_cuenta = ? AND SA.codigo_cliente=? ORDER BY codigo DESC";
+    private final String SOLICITUD_CURSO = SOLICITUD_ASOCIACION + " WHERE SA.estado='En espera' AND SA.codigo_cuenta = ? AND SA.codigo_cliente=? ORDER BY SA.codigo DESC";
     private final String SOLICITUDES_PENDIENTES = "SELECT SA.*,U.nombre,U.DPI FROM SOLICITUD_ASOCIACION SA INNER JOIN USUARIO U ON SA.codigo_cliente = U.codigo INNER JOIN CUENTA C ON SA.codigo_cuenta = C.codigo WHERE C.codigo_cliente = ? AND estado = 'En espera'";
     Connection conexion = Conexion.getConexion();
     
@@ -143,9 +143,33 @@ public class AsociacionModel {
         return listaSolicitudes;
     }
     
-    public void responderSolicitud(){
+    /**
+     * Actualizamos los datos en base al codigo de la solicitud
+     * @param nuevoEstado
+     * @param codigoSolicitud 
+     */
+    public void actualizarSolicitud(String nuevoEstado, int codigoSolicitud){
+        String query = "UPDATE SOLICITUD_ASOCIACION SET estado = ? WHERE codigo = ?";
         
-        
+        try (PreparedStatement ps = conexion.prepareStatement(query)){
+            ps.setString(1, nuevoEstado);
+            ps.setInt(2, codigoSolicitud);
+            
+            ps.execute();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+    }
     
+    public void crearAsociacion(int codigoCuenta, int codigoCliente){
+        String query  = "INSERT INTO ASOCIACION_CUENTA VALUES(?,?)";
+        try (PreparedStatement ps = conexion.prepareStatement(query)){
+            ps.setInt(1, codigoCuenta);
+            ps.setInt(2, codigoCliente);
+            
+            ps.execute();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
     }
 }

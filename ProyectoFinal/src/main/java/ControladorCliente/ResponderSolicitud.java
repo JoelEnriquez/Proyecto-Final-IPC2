@@ -24,41 +24,45 @@ import javax.servlet.http.HttpServletResponse;
 public class ResponderSolicitud extends HttpServlet {
 
     private AsociacionModel asociacionModel = new AsociacionModel();
-   
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if (request.getSession().getAttribute("codigo") == null) {
             response.sendRedirect(request.getContextPath() + "/Inicio/Login.jsp");
         }
-        
-        if (request.getParameter("responder")!=null) {
-            if (request.getAttribute("responder").equals("aceptar")) {
+
+        if (request.getParameter("responder") != null) {
+            String codigo = request.getParameter("codigo");
+            if (request.getParameter("responder").equals("aceptar")) {
                 //Aceptar
-            }
-            else if(request.getAttribute("responder").equals("declinar")){
+                String codigoCuenta = request.getParameter("codCuenta");
+                String codigoCliente = request.getParameter("codCliente");
+                
+                asociacionModel.actualizarSolicitud("Aceptada", Integer.parseInt(codigo));
+                asociacionModel.crearAsociacion(Integer.parseInt(codigoCuenta),Integer.parseInt(codigoCliente));
+                request.setAttribute("logro", 1);
+            } else if (request.getParameter("responder").equals("declinar")) {
                 //Rechazar
+                asociacionModel.actualizarSolicitud("Rechazada", Integer.parseInt(codigo));
+                request.setAttribute("logro", 0);
             }
         }
-        
-        ArrayList<SolicitudAsoYSolicitante> solicitudesPen = asociacionModel.solicitudesPendientes((Integer)request.getSession().getAttribute("codigo"));
+
+        ArrayList<SolicitudAsoYSolicitante> solicitudesPen = asociacionModel.solicitudesPendientes((Integer) request.getSession().getAttribute("codigo"));
         request.setAttribute("solicitudesPen", solicitudesPen);
         request.getRequestDispatcher("/Cliente/ResponderAsociacion.jsp").forward(request, response);
     }
 
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-   
 
 }
