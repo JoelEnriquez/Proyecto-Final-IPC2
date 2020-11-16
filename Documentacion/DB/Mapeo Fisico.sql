@@ -188,6 +188,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `ProyectoFinal`.`SOLICITUD_ASOCIACION` (
   `codigo` INT NOT NULL AUTO_INCREMENT,
   `estado` VARCHAR(45) NOT NULL,
+  `fecha_solicitud` DATE NOT NULL,
   `codigo_cuenta` INT NOT NULL,
   `codigo_cliente` INT NOT NULL,
   PRIMARY KEY (`codigo`),

@@ -5,10 +5,12 @@
  */
 package ControladorCliente;
 
-import EntidadesBanco.SolicitudTransaccion;
+import EntidadesBanco.SolicitudAsociacion;
 import ModelosCliente.AsociacionModel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +33,8 @@ public class ConfirmarSolicitud extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/Inicio/Login.jsp");
         }
         
-        SolicitudTransaccion solicitud = new SolicitudTransaccion("En espera", request.getParameter("codigoAsociar"), String.valueOf(request.getSession().getAttribute("codigo")));
+        SolicitudAsociacion solicitud = new SolicitudAsociacion("En espera",new Date(Calendar.getInstance().getTime().getTime()),
+                request.getParameter("codigoAsociar"), String.valueOf(request.getSession().getAttribute("codigo")));
         asoModel.realizarSolicitud(solicitud);
         
         request.setAttribute("success", true);

@@ -6,11 +6,12 @@
 package ModelosCliente;
 
 import ConexionDB.Conexion;
-import ControladorCliente.SolicitarAsociacion;
-import EntidadesBanco.SolicitudTransaccion;
+import EntidadesBanco.SolicitudAsociacion;
+import EntidadesReporte.SolicitudAsoYSolicitante;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,8 +19,10 @@ import java.sql.ResultSet;
  */
 public class AsociacionModel {
     
-    private final String INSERTAR_SOLICITUD = "INSERT INTO SOLICITUD_ASOCIACION (estado, codigo_cuenta, codigo_cliente) VALUES (?,?,?)";
-    private final String SOLICITUD_CURSO = "SELECT * FROM SOLICITUD_ASOCIACION WHERE estado='En espera' AND codigo_cuenta = ? AND codigo_cliente=? ORDER BY codigo DESC";
+    private final String SOLICITUD_ASOCIACION = "SELECT SA.* FROM SOLICITUD ASOCIACION SA";
+    private final String INSERTAR_SOLICITUD = "INSERT INTO SOLICITUD_ASOCIACION (estado,fecha_solicitud, codigo_cuenta, codigo_cliente) VALUES (?,?,?,?)";
+    private final String SOLICITUD_CURSO = SOLICITUD_ASOCIACION + " WHERE SA.estado='En espera' AND SA.codigo_cuenta = ? AND SA.codigo_cliente=? ORDER BY codigo DESC";
+    private final String SOLICITUDES_PENDIENTES = "SELECT SA.*,U.nombre,U.DPI FROM SOLICITUD_ASOCIACION SA INNER JOIN USUARIO U ON SA.codigo_cliente = U.codigo INNER JOIN CUENTA C ON SA.codigo_cuenta = C.codigo WHERE C.codigo_cliente = ? AND estado = 'En espera'";
     Connection conexion = Conexion.getConexion();
     
     /**
@@ -82,13 +85,14 @@ public class AsociacionModel {
         return 0;
     }
     
-    public void realizarSolicitud(SolicitudTransaccion solicitud){
+    public void realizarSolicitud(SolicitudAsociacion solicitud){
         String query = INSERTAR_SOLICITUD;
         
         try(PreparedStatement ps = conexion.prepareStatement(query)) {
             ps.setString(1, solicitud.getEstado());
-            ps.setInt(2, Integer.parseInt(solicitud.getCodigoCuenta()));
-            ps.setInt(3, Integer.parseInt(solicitud.getCodigoCliente()));
+            ps.setDate(2, solicitud.getFechaSolicitud());
+            ps.setInt(3, Integer.parseInt(solicitud.getCodigoCuenta()));
+            ps.setInt(4, Integer.parseInt(solicitud.getCodigoCliente()));
             
             ps.execute();
         } catch (Exception e) {
@@ -112,5 +116,36 @@ public class AsociacionModel {
             e.printStackTrace(System.out);
         }
         return false;
+    }
+    
+    public ArrayList<SolicitudAsoYSolicitante> solicitudesPendientes(int codigoCliente){
+        String query = SOLICITUDES_PENDIENTES;
+        ArrayList<SolicitudAsoYSolicitante> listaSolicitudes = new ArrayList<>();
+        
+        try (PreparedStatement ps = conexion.prepareStatement(query)){
+            ps.setInt(1, codigoCliente);
+            
+            try(ResultSet rs = ps.executeQuery()){
+                while (rs.next()) {
+                    listaSolicitudes.add(new SolicitudAsoYSolicitante(
+                            String.valueOf(rs.getInt(1)),
+                            rs.getString(2),
+                            rs.getDate(3), 
+                            String.valueOf(rs.getInt(4)),
+                            String.valueOf(rs.getInt(5)),
+                            rs.getString(6),
+                            rs.getString(7)));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return listaSolicitudes;
+    }
+    
+    public void responderSolicitud(){
+        
+        
+    
     }
 }

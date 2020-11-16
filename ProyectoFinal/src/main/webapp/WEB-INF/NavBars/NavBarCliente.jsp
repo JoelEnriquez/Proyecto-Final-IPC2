@@ -13,7 +13,7 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Transferir Dinero</a>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/Cliente/SolicitarAsociacion.jsp">Solicitar Asociacion</a>
-                        <a class="dropdown-item" href="#">Responder Asociacion</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/ResponderSolicitud">Responder Asociacion</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

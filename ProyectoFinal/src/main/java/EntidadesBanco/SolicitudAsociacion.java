@@ -5,24 +5,29 @@
  */
 package EntidadesBanco;
 
+import java.sql.Date;
+
 /**
  *
  * @author joel
  */
-public class SolicitudTransaccion extends AsociacionCuenta {
+public class SolicitudAsociacion extends AsociacionCuenta {
  
     private String codigo;
     private String estado;
+    private Date fechaSolicitud;
 
-    public SolicitudTransaccion(String codigo, String estado, String codigoCuenta, String codigoCliente) {
+    public SolicitudAsociacion(String codigo, String estado,Date fechaSolicitud, String codigoCuenta, String codigoCliente) {
         super(codigoCuenta, codigoCliente);
         this.codigo = codigo;
         this.estado = estado;
+        this.fechaSolicitud = fechaSolicitud;
     }
 
-    public SolicitudTransaccion(String estado, String codigoCuenta, String codigoCliente) {
+    public SolicitudAsociacion(String estado, Date fechaSolicitud, String codigoCuenta, String codigoCliente) {
         super(codigoCuenta, codigoCliente);
         this.estado = estado;
+        this.fechaSolicitud = fechaSolicitud;
     }
 
     public String getCodigo() {
@@ -39,6 +44,14 @@ public class SolicitudTransaccion extends AsociacionCuenta {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Date getFechaSolicitud() {
+        return fechaSolicitud;
+    }
+
+    public void setFechaSolicitud(Date fechaSolicitud) {
+        this.fechaSolicitud = fechaSolicitud;
     }
     
     
