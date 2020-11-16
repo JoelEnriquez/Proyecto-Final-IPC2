@@ -11,7 +11,7 @@
                         Transacciones Online
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Transferir Dinero</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/RealizarTransferencia">Transferir Dinero</a>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/Cliente/SolicitarAsociacion.jsp">Solicitar Asociacion</a>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/ResponderSolicitud">Responder Asociacion</a>
                     </div>
