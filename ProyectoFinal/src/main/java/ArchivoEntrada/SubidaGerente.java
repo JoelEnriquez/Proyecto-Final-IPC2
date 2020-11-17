@@ -22,12 +22,14 @@ public class SubidaGerente {
     
     private Connection conexion = Conexion.getConexion();
     private Encriptar encriptar;
+    private LecturaXML lecturaXML;
     private List<Element> listaGerentes;
     private GuardarUsuario guardarGerente;
 
-    public SubidaGerente(List<Element> listaGerentes) {
+    public SubidaGerente(List<Element> listaGerentes, LecturaXML lecturaXML) {
         this.listaGerentes = listaGerentes;
         encriptar = new Encriptar();
+        this.lecturaXML = lecturaXML;
         guardarGerente = new GuardarUsuario();
     }
     

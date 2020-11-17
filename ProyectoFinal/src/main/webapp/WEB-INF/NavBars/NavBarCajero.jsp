@@ -11,8 +11,8 @@
                         Atender Cliente
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Retiro</a>
-                        <a class="dropdown-item" href="#">Deposito</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/Cajero/AtenderRetiro.jsp">Retiro</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/Cajero/AtenderDeposito.jsp">Deposito</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

@@ -21,10 +21,12 @@ public class SubidaCajero {
     
     private Connection conexion = Conexion.getConexion();
     private Encriptar encriptar;
+    private LecturaXML lecturaXML;
     private List<Element> listaCajeros;
 
-    public SubidaCajero(List<Element> listaCajeros) {
+    public SubidaCajero(List<Element> listaCajeros, LecturaXML lecturaXML) {
         this.listaCajeros = listaCajeros;
+        this.lecturaXML = lecturaXML;
         encriptar = new Encriptar();
     }
     

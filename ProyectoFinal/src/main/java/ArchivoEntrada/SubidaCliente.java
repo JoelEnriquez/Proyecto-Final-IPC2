@@ -28,12 +28,14 @@ public class SubidaCliente {
     private Connection conexion = Conexion.getConexion();
     private Encriptar encriptar;
     private String pathArchivos;
+    private LecturaXML lecturaXML;
     private List<Element> listaClientes;
     private ArrayList<Cuenta> cuentasCliente;
 
-    public SubidaCliente(List<Element> listaClientes, String pathArchivos) {
+    public SubidaCliente(List<Element> listaClientes, String pathArchivos, LecturaXML lecturaXML) {
         this.listaClientes = listaClientes;
         this.pathArchivos = pathArchivos;
+        this.lecturaXML = lecturaXML;
         encriptar = new Encriptar();
         cuentasCliente = new ArrayList<>();
     }

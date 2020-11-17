@@ -44,6 +44,13 @@ public class Cuenta {
         this.codigoCliente = codigoCliente;
     }
 
+    public Cuenta() {
+    }
+    
+    public Cuenta(String codigo){
+        this.codigo = codigo;
+    }
+
     public String getCodigo() {
         return codigo;
     }

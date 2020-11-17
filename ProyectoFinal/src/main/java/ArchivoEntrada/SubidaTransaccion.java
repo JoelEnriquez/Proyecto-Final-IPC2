@@ -24,9 +24,11 @@ public class SubidaTransaccion {
     private Connection conexion = Conexion.getConexion();
     private Encriptar encriptar;
     private List<Element> listaTransacciones;
+    private LecturaXML lecturaXML;
 
-    public SubidaTransaccion(List<Element> listaTransacciones) {
+    public SubidaTransaccion(List<Element> listaTransacciones, LecturaXML lecturaXML) {
         this.listaTransacciones = listaTransacciones;
+        this.lecturaXML = lecturaXML;
         encriptar = new Encriptar();
     }
     

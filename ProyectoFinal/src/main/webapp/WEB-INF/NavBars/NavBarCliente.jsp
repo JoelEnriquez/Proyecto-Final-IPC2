@@ -21,11 +21,11 @@
                         Reportes
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Transacciones mas grandes</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/ReporTransaccionesGrandes">Transacciones mas grandes</a>
                         <a class="dropdown-item" href="#">Transacciones realizadas</a>
                         <a class="dropdown-item" href="#">Cuentas mas capital y transacciones</a>
-                        <a class="dropdown-item" href="#">Historial de solicitud recibidas</a>
-                        <a class="dropdown-item" href="#">Historial de solicitud realizadas</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/ReporSolicitudesRecibidas">Historial de solicitud recibidas</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/ReporSolicitudesEnviadas">Historial de solicitud realizadas</a>
                     </div>
                 </li>
                 
