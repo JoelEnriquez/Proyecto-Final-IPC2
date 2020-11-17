@@ -49,7 +49,7 @@ public class SubidaTransaccion {
     
   
     private void insertarNuevaTransaccion(Transaccion nuevaTransaccion){
-        String query  = "INSERT INTO TRANSACCION VALUES (?,?,?,?,?,?,?)";
+        String query  = "INSERT INTO TRANSACCION (codigo, fecha, hora, tipo, monto, codigo_cuenta, codigo_cajero) VALUES (?,?,?,?,?,?,?)";
         try (PreparedStatement ps = conexion.prepareStatement(query)){
             ps.setInt(1, Integer.parseInt(nuevaTransaccion.getCodigo()));
             ps.setDate(2, nuevaTransaccion.getFecha());

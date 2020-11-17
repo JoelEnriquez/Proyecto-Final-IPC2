@@ -28,17 +28,17 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="cuentaTransferencia">Cuenta Transferencia</label>
-                            <select class="custom-select mr-sm-2" id="cuentaTransferencia" name="Cuenta Transferir">
+                            <select class="custom-select mr-sm-2" id="cuentaTransferencia" name="cuentaEmisora">
                                 <c:forEach items="${cuentas}" var="cuenta">
                                     <option value="${cuenta.codigo}">
-                                        ${cuenta.codigo} (${cuenta.monto})
+                                        ${cuenta.codigo} (Q${cuenta.monto})
                                     </option>
                                 </c:forEach>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="cuentaTransferir">Cuenta Asociada</label>
-                            <select class="custom-select mr-sm-2" id="cuentaTransferir">
+                            <select class="custom-select mr-sm-2" id="cuentaTransferir" name="cuentaReceptora">
                                 <c:forEach items="${cAsociadas}" var="cAsociada">
                                     <option value="${cAsociada}">
                                         ${cAsociada}

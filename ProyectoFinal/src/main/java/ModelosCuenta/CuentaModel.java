@@ -50,4 +50,78 @@ public class CuentaModel {
         }
         return 0; 
     }
+    
+    
+    public void acreditarMonto(double monto, int codigoCuenta){
+        String query = "UPDATE CUENTA SET monto = ? WHERE codigo = ?";
+        
+        try (PreparedStatement ps = conexion.prepareStatement(query)){
+            ps.setDouble(1, calcularDiferenciaCredito(monto, codigoCuenta));
+            ps.setInt(2, codigoCuenta);
+            ps.execute();
+            
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+    }
+    
+    public void debitarMonto(double monto, int codigoCuenta){
+        String query = "UPDATE CUENTA SET monto = ? WHERE codigo = ?";
+        try (PreparedStatement ps = conexion.prepareStatement(query)){
+            ps.setDouble(1, calcularDiferenciaDebito(monto, codigoCuenta));
+            ps.setInt(2, codigoCuenta);
+            ps.execute();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+    }
+    
+    
+    private double calcularDiferenciaCredito(double monto, int codigoCuenta){
+        String query = "SELECT monto FROM CUENTA WHERE codigo = ?";
+        try (PreparedStatement ps = conexion.prepareStatement(query)){
+            ps.setInt(1, codigoCuenta);
+            
+            try(ResultSet rs = ps.executeQuery()){
+                if (rs.next()) {
+                    return rs.getDouble(1)+monto;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return 0;
+    }
+    
+    private double calcularDiferenciaDebito(double monto, int codigoCuenta){
+        String query = "SELECT monto FROM CUENTA WHERE codigo = ?";
+        try (PreparedStatement ps = conexion.prepareStatement(query)){
+            ps.setInt(1, codigoCuenta);
+            
+            try(ResultSet rs = ps.executeQuery()){
+                if (rs.next()) {
+                    return rs.getDouble(1)-monto;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return 0;
+    }
+    
+    public double devolverMontoActual(int codigoCuenta){
+        String query = "SELECT monto FROM CUENTA WHERE codigo = ?";
+        try (PreparedStatement ps = conexion.prepareStatement(query)){
+            ps.setInt(1, codigoCuenta);
+            
+            try(ResultSet rs = ps.executeQuery()){
+                if (rs.next()) {
+                    return rs.getDouble(1);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return 0;
+    }
 }

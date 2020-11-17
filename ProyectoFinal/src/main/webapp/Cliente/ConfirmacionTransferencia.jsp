@@ -34,24 +34,24 @@
                         <div class="form-group row">
                             <label for="staticCodeCuenta" class="col-form-label">Cuenta Transferir</label>
                             <div class="col-sm-10 text-center">
-                                <input type="text" readonly class="form-control-plaintext" id="staticCodeCuenta" value="${cuentaTransferir}">
+                                <input type="text" readonly class="form-control-plaintext" id="staticCodeCuenta" value="${cuentaTransferir}" name="cuentaTransferir">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="staticMonto" class="col-form-label">Monto</label>
+                            <label for="staticMonto" class="col-form-label">Monto:</label>
                             <div class="col-sm-10 text-center">
-                                <input type="text" readonly class="form-control-plaintext" id="staticMonto" value="${monto}">
+                                <input type="text" readonly class="form-control-plaintext" id="staticMonto" value="${cantidad}" name="cantidad">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="staticCuenta" class="col-form-label">Cuenta Descontar</label>
                             <div class="col-sm-10 text-center">
-                                <input type="text" readonly class="form-control-plaintext" name="codigoAsociar" id="staticCuenta" value="${cuentaDes}">
+                                <input type="text" readonly class="form-control-plaintext" name="cuentaDescontar" id="staticCuenta" value="${cuentaDescontar}">
                             </div>
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">Confirmar</button>
-                            <a href="${pageContext.request.contextPath}/Cliente/SolicitarAsociacion.jsp" 
+                            <a href="${pageContext.request.contextPath}/RealizarTransferencia" 
                                class="btn btn-outline-danger">
                                 <i class="fas fa-times"></i> Rechazar
                             </a>

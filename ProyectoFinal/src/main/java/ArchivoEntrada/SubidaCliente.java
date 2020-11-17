@@ -76,6 +76,7 @@ public class SubidaCliente {
             for (Cuenta cuentaCliente : cuentasCliente) {
                 insertarCuentasCliente(cuentaCliente);
             }
+            cuentasCliente.clear();
         }   
     }
     

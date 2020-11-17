@@ -7,6 +7,7 @@ package ModelosCliente;
 
 import ConexionDB.Conexion;
 import EntidadesBanco.Cuenta;
+import EntidadesBanco.Transaccion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 public class TransferirModel {
     
     private final String OBTENER_CUENTAS = "SELECT * FROM CUENTA WHERE codigo_cliente = ?";
+    private final String INSERTAR_TRANSFERENCIA = "INSERT INTO TRANSACCION (fecha, hora, tipo, monto, dinero_actual_cuenta,codigo_cuenta,codigo_cajero) VALUES (?,?,?,?,?,?,?)";
     private final String OBTENER_CODIGO_CUENTAS_ASOCIADAS = "SELECT codigo_cuenta FROM ASOCIACION_CUENTA WHERE codigo_cliente = ?";
     Connection conexion = Conexion.getConexion();
     
@@ -67,6 +69,39 @@ public class TransferirModel {
         return listaCodigos;
     }
             
+    public boolean dineroSuficiente(int codigoCuenta, double montoDescontar){
+        String query = "SELECT monto FROM CUENTA WHERE codigo = ?";
+        
+        try(PreparedStatement ps = conexion.prepareStatement(query)) {
+            ps.setInt(1, codigoCuenta);
             
+            try(ResultSet rs = ps.executeQuery()){
+                if (rs.next()) {
+                    return rs.getDouble(1) >= montoDescontar;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return false;
+    }
+    
+    
+    public void realizarTransferencia(Transaccion transaccion){
+        String query = INSERTAR_TRANSFERENCIA;
+        
+        try (PreparedStatement ps = conexion.prepareStatement(query)){
+            ps.setDate(1, transaccion.getFecha());
+            ps.setTime(2, transaccion.getHora());
+            ps.setString(3, transaccion.getTipo());
+            ps.setDouble(4, transaccion.getMonto());
+            ps.setDouble(5, transaccion.getDineroActualCuenta());
+            ps.setInt(6, Integer.parseInt(transaccion.getCodigoCuenta()));
+            ps.setInt(7, Integer.parseInt(transaccion.getCodigoCajero()));
             
+            ps.execute();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+    }
 }

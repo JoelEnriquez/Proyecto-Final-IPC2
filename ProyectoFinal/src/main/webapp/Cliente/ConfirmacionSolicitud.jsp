@@ -53,7 +53,7 @@
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">Confirmar</button>
-                            <a href="${pageContext.request.contextPath}/Cliente/SolicitarAsociacion.jsp" 
+                            <a href="${pageContext.request.contextPath}/Cliente/RealizarTransferencia" 
                                class="btn btn-outline-danger">
                                 <i class="fas fa-times"></i> Rechazar
                             </a>

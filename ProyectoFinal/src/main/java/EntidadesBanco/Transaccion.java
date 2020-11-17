@@ -19,6 +19,7 @@ public class Transaccion {
     private Time hora;
     private String tipo;
     private double monto;
+    private double dineroActualCuenta;
     private String codigoCuenta;
     private String codigoCajero;
 
@@ -48,17 +49,43 @@ public class Transaccion {
      * @param hora
      * @param tipo
      * @param monto
+     * @param dineroActualCuenta
      * @param codigoCuenta
      * @param codigoCajero 
      */
-    public Transaccion(Date fecha, Time hora, String tipo, double monto, String codigoCuenta, String codigoCajero) {
+    public Transaccion(Date fecha, Time hora, String tipo, double monto,double dineroActualCuenta, String codigoCuenta, String codigoCajero) {
         this.fecha = fecha;
         this.hora = hora;
         this.tipo = tipo;
         this.monto = monto;
+        this.dineroActualCuenta = dineroActualCuenta;
         this.codigoCuenta = codigoCuenta;
         this.codigoCajero = codigoCajero;
     }
+
+    /**
+     * Transaccion completa
+     * @param codigo
+     * @param fecha
+     * @param hora
+     * @param tipo
+     * @param monto
+     * @param dineroActualCuenta
+     * @param codigoCuenta
+     * @param codigoCajero 
+     */
+    public Transaccion(String codigo, Date fecha, Time hora, String tipo, double monto, double dineroActualCuenta, String codigoCuenta, String codigoCajero) {
+        this.codigo = codigo;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.tipo = tipo;
+        this.monto = monto;
+        this.dineroActualCuenta = dineroActualCuenta;
+        this.codigoCuenta = codigoCuenta;
+        this.codigoCajero = codigoCajero;
+    }
+    
+    
 
 
     public String getCodigo() {
@@ -115,6 +142,14 @@ public class Transaccion {
 
     public void setCodigoCajero(String codigoCajero) {
         this.codigoCajero = codigoCajero;
+    }
+
+    public double getDineroActualCuenta() {
+        return dineroActualCuenta;
+    }
+
+    public void setDineroActualCuenta(double dineroActualCuenta) {
+        this.dineroActualCuenta = dineroActualCuenta;
     }
     
     

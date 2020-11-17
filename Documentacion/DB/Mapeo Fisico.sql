@@ -15,29 +15,14 @@ CREATE SCHEMA IF NOT EXISTS `ProyectoFinal` ;
 USE `ProyectoFinal` ;
 
 -- -----------------------------------------------------
--- Table `ProyectoFinal`.`CAJERO`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ProyectoFinal`.`CAJERO` (
-  `codigo` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(60) NOT NULL,
-  `turno` VARCHAR(20) NOT NULL,
-  `DPI` VARCHAR(45) NOT NULL,
-  `direccion` VARCHAR(100) NOT NULL,
-  `sexo` VARCHAR(20) NOT NULL,
-  `password` VARCHAR(80) NOT NULL,
-  PRIMARY KEY (`codigo`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `ProyectoFinal`.`USUARIO`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ProyectoFinal`.`USUARIO` (
   `codigo` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(60) NOT NULL,
   `DPI` VARCHAR(45) NOT NULL,
-  `direccion` VARCHAR(100) NOT NULL,
-  `sexo` VARCHAR(20) NOT NULL,
+  `direccion` VARCHAR(100),
+  `sexo` VARCHAR(20),
   `password` VARCHAR(80) NOT NULL,
   `tipo_usuario` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`codigo`))
@@ -122,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `ProyectoFinal`.`TRANSACCION` (
   `hora` TIME NOT NULL,
   `tipo` VARCHAR(15) NOT NULL,
   `monto` DECIMAL(15) NOT NULL,
+  `dinero_actual_cuenta` DECIMAL(15),
   `codigo_cuenta` INT NOT NULL,
   `codigo_cajero` INT NOT NULL,
   PRIMARY KEY (`codigo`),
@@ -235,3 +221,6 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 INSERT INTO TURNO_TRABAJO (tipo_turno, hora_entrada, hora_salida) VALUES ('Matutino', '6:00','14:30');
 INSERT INTO TURNO_TRABAJO (tipo_turno, hora_entrada, hora_salida) VALUES ('Vespertino', '13:00','22:00');
+INSERT INTO TURNO_TRABAJO (tipo_turno, hora_entrada, hora_salida) VALUES ('Toda Hora', '00:00','23:59');
+INSERT INTO USUARIO (codigo,nombre,DPI, password, tipo_usuario) VALUES (101,'Banca virtual','101','8cX7%%tedj4!yJm4', 'Cajero');
+INSERT INTO EMPLEADO VALUES (101, 'Cajero', 3);

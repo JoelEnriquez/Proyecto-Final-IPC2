@@ -19,7 +19,7 @@ public class VerificarDatos {
     private Connection conexion = Conexion.getConexion();
     
     public int verificarDatos(){
-        String query = "SELECT COUNT(*) FROM EMPLEADO";
+        String query = "SELECT COUNT(*) FROM TRANSACCION";
         try(PreparedStatement ps = conexion.prepareStatement(query);
                 ResultSet rs = ps.executeQuery()) {
             
